@@ -4,32 +4,7 @@ members = ["martin", "martin-core", "martin-tile-utils", "mbtiles"]
 
 [workspace.package]
 edition = "2024"
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/maplibre/martin"
-rust-version = "1.88"
-homepage = "https://martin.maplibre.org/"
-
-[workspace.lints.rust]
-unused_qualifications = "warn"
-# Lint inheritance from workspace is not yet supported
-# Crate mbtiles uses unsafe code, so we can't forbid it here
-# unsafe_code = "forbid"
-
-[workspace.lints.clippy]
-# Restrictions
-unimplemented = "warn"
-panic_in_result_fn = "warn"
-panic = "warn"
-todo = "warn"
-# Pedantics without being too noisy
-pedantic = { level = "warn", priority = -1 }
-derive_partial_eq_without_eq = "allow"
-enum_variant_names = "allow"
-implicit_hasher = "allow"
-missing_errors_doc = "allow"
-missing_panics_doc = "allow"
-module_name_repetitions = "allow"
-struct_field_names = "allow"
+rust-version = "1.93"
 
 [workspace.dependencies]
 actix-cors = "0.7"

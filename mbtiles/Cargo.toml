@@ -1,15 +1,8 @@
 [package]
 name = "mbtiles"
 version = "0.14.3"
-authors = ["Yuri Astrakhan <YuriAstrakhan@gmail.com>", "MapLibre contributors"]
-description = "A simple low-level MbTiles access and processing library, with some tile format detection and other relevant heuristics."
-keywords = ["mbtiles", "maps", "tiles", "mvt", "tilejson"]
-categories = ["science::geo", "database"]
 edition.workspace = true
-license.workspace = true
-repository.workspace = true
 rust-version.workspace = true
-homepage = "https://maplibre.org/martin/tools.html#mbtiles"
 
 [lib]
 path = "src/lib.rs"
@@ -56,6 +49,3 @@ env_logger.workspace = true
 insta = { workspace = true, features = ["toml", "yaml"] }
 pretty_assertions.workspace = true
 rstest.workspace = true
-
-[lints]
-workspace = true

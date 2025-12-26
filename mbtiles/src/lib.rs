@@ -1,5 +1,3 @@
-#![doc = include_str!("../README.md")]
-
 // Re-export sqlx
 pub use bindiff::{PatchType, PatchTypeCli};
 pub use sqlx;
