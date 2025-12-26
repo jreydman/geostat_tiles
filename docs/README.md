@@ -1,33 +1,33 @@
-# Martins documentation
+## Config
+```yaml
+listen_addresses: '${HOST}:${PORT}'
 
-The documentation of `maplibre/martin` is available at <https://maplibre.org/martin>.
+web_ui: enableforall
 
-To build/develop this documentation locally, you can install `mdbook` and the required preprocessors.
+postgres:
+  connection_string: '${DATABASE_URL}'
+  functions:
+    fetch:
+      schema: public
+      function: function_zxy_query
+      bounds:
+        - 29.7985868
+        - 49.7709432
+        - 31.9186829
+        - 51.4121286
 
-```bash
-cargo install mdbook mdbook-tabs mdbook-mermaid
+styles:
+  paths:
+    - ./tilestyle.json
 ```
 
-Mermaid diagrams are supported via the `mdbook-mermaid` preprocessor. The configuration lives in `docs/book.toml`.
+## Release targets
+target/release/martin
+target/release/martin-cp
+target/release/mbtiles
 
-## Development
+requirements
+tilestyle.json <-- for tiles interface like url, view example in docs
 
-You can simply edit the markdown files in the `src` directory and run the following command (from the project root directory) to preview the changes:
-
-```bash
-mdbook watch --open docs
-```
-
-Next to showing you how the docs will look, this also runs a link checker to ensure that all links are valid.
-
-> [!TIP]
-> Make sure that all pages are linked from [`src/SUMMARY.md`](src/SUMMARY.md).
-> **Only** pages linked will be rendered.
-> See the [mdbook documentation](https://rust-lang.github.io/mdBook/) for more information.
-
-> [!NOTE]
-> Files may only be added, not renamed.
-> If you want to rename a file, make sure to [add a redirect to the new file in `output.html.redirect`](https://rust-lang.github.io/mdBook/format/configuration/renderers.html#outputhtmlredirect).
-> Renaming files would otherwise break existing, external links for example on stackoverflow or github-discussions.
->
-> Removing is bad for the same reasons and will be handled on a case-by-case basis.
+## Entrypoint
+martin --config <path/to/config.yaml>
