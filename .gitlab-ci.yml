@@ -16,7 +16,7 @@ variables:
   VAULT_CACERT: "/etc/ssl/certs/_.isys.net.ua.crt" # Volume in Gitlab runner
   DEPLOY_USER: root
   DEPLOY_HOST: 10.60.238.111
-  CONTAINER_NAME: c
+  CONTAINER_NAME: geostat_tiles
   CONTAINER_PORT: 18052
   CI_RUNNER_IP: 10.41.0.67
 
