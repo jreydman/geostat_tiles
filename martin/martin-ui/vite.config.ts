@@ -5,6 +5,7 @@ import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	base: './',
   build: {
     // assets can also be the name of a tile source
     // so we use /_/assets to avoid conflicts
