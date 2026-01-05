@@ -162,7 +162,7 @@ test:
     - apk add --no-cache net-tools
     - docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME || true
     - docker network create stan || true
-    - docker run --rm -d --name $CONTAINER_NAME -p $CONTAINER_PORT:8053 --env-file app.env $IMAGE_NAME
+    - docker run --rm -d --name $CONTAINER_NAME -p $CONTAINER_PORT:8053 -v app.env:/app/data/config.yaml --config /app/data/config.yaml $IMAGE_NAME
     - sleep 15
     - curl -v http://$CI_RUNNER_IP:$CONTAINER_PORT
     - docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME || true
@@ -193,7 +193,7 @@ deploy:
   #  - ssh -T $DEPLOY_USER@$DEPLOY_HOST "docker network create stan || true"
     - ssh -T $DEPLOY_USER@$DEPLOY_HOST "docker images --format '{{.Repository}}:{{.Tag}} {{.ID}}' | grep harbor.isys.net.ua/$CI_PROJECT_NAME | awk '{print $2}' | xargs -r docker rmi -f"
     - scp app.env $DEPLOY_USER@$DEPLOY_HOST:/tmp/app.env
-    - ssh -T $DEPLOY_USER@$DEPLOY_HOST "docker run -d --name $CONTAINER_NAME --network=stan -p $CONTAINER_PORT:8052 --restart unless-stopped --env-file /tmp/app.env $IMAGE_NAME"
+    - ssh -T $DEPLOY_USER@$DEPLOY_HOST "docker run -d --name $CONTAINER_NAME --network=stan -p $CONTAINER_PORT:8052 --restart unless-stopped -v app.env:/app/data/config.yaml --config /app/data/config.yaml $IMAGE_NAME"
   dependencies:
     - build
     - read_secret
