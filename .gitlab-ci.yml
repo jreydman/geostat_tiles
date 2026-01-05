@@ -164,6 +164,7 @@ test:
     - docker network create stan || true
     - docker run --rm -d --name $CONTAINER_NAME -p $CONTAINER_PORT:8053 -v app.env:/app/data/config.yaml $IMAGE_NAME
     - sleep 15
+    - docker logs $CONTAINER_NAME
     - curl -v http://$CI_RUNNER_IP:$CONTAINER_PORT
     - docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME || true
   dependencies:
